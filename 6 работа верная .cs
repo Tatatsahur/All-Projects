@@ -8,14 +8,6 @@
 
 
 using System;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using System.Dynamic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace работа_6
 {
     internal class Program
@@ -35,8 +27,8 @@ namespace работа_6
                 x = Convert.ToInt32(Console.ReadLine());
                 Console.Write("y = ");
                 y = Convert.ToInt32(Console.ReadLine());
-                double distance = Math.Pow(x, 2) + Math.Pow(y, 2);
-                double radiusSquared = Math.Pow(radius, 2);
+                double distance = Math.Pow(x, 2) + Math.Pow(y, 2); //дистанция от центра до точки
+                double radiusSquared = Math.Pow(radius, 2); //диаметр
                 int resultcheck;
                 switch (distance < radiusSquared)
                 {
@@ -56,7 +48,7 @@ namespace работа_6
                                         Console.WriteLine($"Координаты точки A x = {x},y = {y} за пределами круга ");
                                         break;
                                     default:
-                                        Console.WriteLine($"error reskovski");
+                                        Console.WriteLine($"Ошибка.");
                                         break;
                                 }
                                 break;
@@ -64,10 +56,22 @@ namespace работа_6
                         break;
                 }
             }
-            catch (Exception e)
+            catch (OverflowException oex) //Число вне диапозона (слишком большое либо слишком маленькое)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Что то пошло не так. Ошибка: {oex.Message}");
+            }
+            catch (FormatException fex) //Неверный формат вводимого
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Что то пошло не так. Ошибка: {fex.Message}");
+            }
+            catch (Exception e) // общее исключение
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Что то пошло не так. Ошибка: " + e.Message);
             }
+            Console.ResetColor();
             Console.ReadKey();
         }
     }
