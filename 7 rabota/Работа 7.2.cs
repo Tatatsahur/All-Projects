@@ -19,28 +19,28 @@ namespace работа_7
             Console.Clear();
             Console.BackgroundColor = ConsoleColor.Green;
             Console.WriteLine("Практическая работа 7 \n");
-            uint m, a, storage, numcar; // storage - кол-во коробок на складе,m - нужное кол-во коробок, limitcar - лимит ящиков для 1 машины
+            uint count, temp, storage, numcar; // storage - кол-во коробок на складе,m - нужное кол-во коробок, limitcar - лимит ящиков для 1 машины
             Console.WriteLine("Склад неОЗОН \n");
             Console.Write("Введите нужное количество коробок = ");
             try
             {
 
-                m = Convert.ToUInt32(Console.ReadLine());
-                Console.WriteLine("Введите количество коробок на складе всего: \n");
+                count = Convert.ToUInt32(Console.ReadLine());
+                Console.WriteLine("Введите количество коробок на складе всего: ");
                 Console.Write("склад = ");
                 storage = Convert.ToUInt32(Console.ReadLine());
 
-                if (m > storage)
+                if (count > storage)
                 {
                     Console.BackgroundColor = ConsoleColor.Red;
                     Console.WriteLine("На складе меньше коробок чем нужно. Ошибка.");
-                   Console.BackgroundColor= ConsoleColor.Green;
+                    Console.BackgroundColor = ConsoleColor.Green;
 
                 }
                 else
                 {
                     numcar = 1;
-                    uint remaining = m; // remaining - остаток
+                    uint remaining = count; // remaining - остаток
                     for (uint i = 1; remaining > 0; i++)
                     {
                         Console.WriteLine($"\n--- Машина номер: {numcar} ---");
@@ -56,13 +56,13 @@ namespace работа_7
                             continue;
                         }
                         remaining -= loaded;
-                        a = storage -= loaded;
+                        temp = storage -= loaded;
 
-                        Console.WriteLine($"На складе сейчас {a} коробок. Погрузка...");
+                        Console.WriteLine($"На складе сейчас {temp} коробок. Погрузка...");
                         Console.WriteLine($"Погрузка {loaded} коробок в машину {numcar} прошла успешно.");
                         numcar++;
                     }
-                    Console.WriteLine($"Все {m} коробки погружены");
+                    Console.WriteLine($"Все {count} коробки погружены");
                 }
             }
             catch (FormatException fex) // недопустимый формат ввода
@@ -84,4 +84,3 @@ namespace работа_7
         }
     }
 }
-
